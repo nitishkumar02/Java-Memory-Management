@@ -1,0 +1,135 @@
+public class Student implements Comparable<Student>
+{
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
+    private String name;
+    private int grade;
+    private double gpa;
+
+    public Student(int id,String name, int grade, double gpa) {
+        this.id =id;
+        this.name = name;
+        this.grade = grade;
+        this.gpa = gpa;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public double getGpa() {
+        return gpa;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+
+//    @Override
+//    public boolean equals(Object other) {
+//    Student other1 = (Student) other;
+//    return this.getId() == other1.getId();
+//}
+
+    @Override
+    public boolean equals(Object other) {
+        Student other1 = (Student) other;
+        return this.getGrade()== other1.getGrade();
+    }
+
+    @Override
+    public String toString() {
+        return "{Name :: " + getName() + " Grade ::" + getGrade() + " GPA ::" + getGpa() + "}";
+    }
+
+
+//    @Override
+//    public int compareTo(Student other)
+//    {
+//
+//        if (this.equals(other))
+//        {
+//            return 0;
+//        }
+//        else if (this.getId() > other.getId())
+//        {
+//            return -1;
+//        }
+//        else // (this.getId() < other.getId())
+//        {
+//            return -1;
+//        }
+//
+//    }
+
+
+    @Override
+    public int compareTo(Student other)
+    {
+
+        if (this.getGpa() > other.getGpa())
+        {
+            return 1;
+        }
+        else if (this.getGpa() < other.getGpa())
+        {
+            return -1;
+        }
+        else if (this.getGrade() > other.getGrade())
+        {
+            return 1;
+        }
+        else if(this.getGrade() < other.getGrade())
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
+
+}
+
+
+
+////
+
+import java.util.Arrays;
+
+public class SortsAndPolyMorphism
+{
+    public static void main(String[] args)
+    {
+        Student s1 = new Student(111,"Joe",12,3.7);
+        Student s2 = new Student(112,"Bob",9,3.9);
+        Student s3 = new Student(113,"Sally",11,3.5);
+
+        Student[] students = {s1,s2,s3};
+        System.out.println("\nUnsorted Array ::");
+        System.out.println(Arrays.toString(students));
+        Arrays.sort(students);
+        System.out.println("\nsorted Array ::");
+        System.out.println(Arrays.toString(students));
+    }
+}
